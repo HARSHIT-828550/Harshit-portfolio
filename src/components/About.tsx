@@ -110,7 +110,7 @@ const About: React.FC = () => {
           >
             <div className="image-container">
                      <motion.img
-                       src="/profile-image.jpg"
+                       src="/Harshit-portfolio/profile-image.jpg"
                        alt="Harshit Rajput - .NET Developer"
                        className="about-profile-image"
                        loading="lazy"
