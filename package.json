@@ -1,9 +1,9 @@
 {
-  "name": "portfolio-vite",
+  "name": "Harshit-portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://HARSHIT-828550.github.io/portfolio-vite",
+  "homepage": "https://HARSHIT-828550.github.io/Harshit-portfolio",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
