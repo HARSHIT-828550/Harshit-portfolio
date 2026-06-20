@@ -1,6 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { heroData } from '../data/portfolioData';
+import { heroData, aboutData } from '../data/portfolioData';
+import SocialIcon from './SocialIcon';
+
+const resumeUrl = `${import.meta.env.BASE_URL}Harshit_Rajput_NET_Developer_Resume.pdf`;
 
 const Hero: React.FC = () => {
   const scrollToSection = (sectionId: string) => {
@@ -77,17 +80,17 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             style={{ fontSize: '3rem', fontWeight: '700', marginBottom: '1rem', lineHeight: '1.2' }}
           >
-            <motion.span 
+            <motion.span
               style={{ color: 'var(--text-light)' }}
               animate={{ opacity: [0.7, 1, 0.7] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              This is 
+              I'm{' '}
             </motion.span>
-            <motion.span 
-              className="highlight" 
+            <motion.span
+              className="highlight"
               style={{ color: '#ff6b9d' }}
-              animate={{ 
+              animate={{
                 scale: [1, 1.05, 1],
                 textShadow: ['0 0 0px #ff6b9d', '0 0 20px #ff6b9d', '0 0 0px #ff6b9d']
               }}
@@ -95,24 +98,45 @@ const Hero: React.FC = () => {
             >
               {heroData.name}
             </motion.span>
-            <motion.span 
-              style={{ color: 'var(--text-light)' }}
-              animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-            >
-              , I'm a 
-            </motion.span>
-            <motion.span 
-              style={{ color: '#00f2fe' }}
-              animate={{ 
-                scale: [1, 1.05, 1],
-                textShadow: ['0 0 0px #00f2fe', '0 0 20px #00f2fe', '0 0 0px #00f2fe']
-              }}
-              transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-            >
-              Professional Software Developer.
-            </motion.span>
           </motion.h1>
+
+          <motion.h2
+            className="hero-title-role"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            style={{
+              fontSize: '1.6rem',
+              fontWeight: 600,
+              marginBottom: '1rem',
+              color: 'var(--heading-accent)'
+            }}
+          >
+            <motion.span
+              animate={{
+                textShadow: ['0 0 0px #00f2fe', '0 0 18px #00f2fe', '0 0 0px #00f2fe']
+              }}
+              transition={{ duration: 2.5, repeat: Infinity }}
+            >
+              {heroData.title}
+            </motion.span>
+          </motion.h2>
+
+          <motion.p
+            className="hero-tagline"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            style={{
+              fontSize: '1.15rem',
+              fontWeight: 500,
+              color: 'var(--accent-color)',
+              marginBottom: '1.25rem',
+              maxWidth: '520px'
+            }}
+          >
+            {heroData.tagline}
+          </motion.p>
 
           <motion.p
             className="hero-description"
@@ -148,11 +172,7 @@ const Hero: React.FC = () => {
               flexWrap: 'wrap'
             }}
           >
-            {[
-              { label: 'Years Experience', value: '3+' },
-              { label: 'Projects Done', value: '10+' },
-              { label: 'Happy Clients', value: '100%' }
-            ].map((stat, index) => (
+            {aboutData.stats.map((stat, index) => (
               <motion.div
                 key={index}
                 style={{
@@ -192,7 +212,7 @@ const Hero: React.FC = () => {
                   animate={{ scale: [1, 1.1, 1] }}
                   transition={{ duration: 1.5, repeat: Infinity, delay: index * 0.2 }}
                 >
-                  {stat.value}
+                  {stat.number}
                 </motion.div>
                 <div style={{ fontSize: '0.9rem', color: 'var(--text-light)' }}>
                   {stat.label}
@@ -208,9 +228,9 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.6, delay: 1 }}
           >
             <motion.a
-              href="#contact"
+              href="#projects"
               className="btn btn-primary"
-              onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}
+              onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }}
               whileHover={{ 
                 scale: 1.1, 
                 y: -5,
@@ -242,18 +262,18 @@ const Hero: React.FC = () => {
                 animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               >
-                CONTACT ME
+                VIEW PROJECTS
               </motion.span>
-              <motion.span 
+              <motion.span
                 style={{ fontSize: '1.2rem' }}
                 animate={{ rotate: [0, 15, -15, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                👤
+                🚀
               </motion.span>
             </motion.a>
             <motion.a
-              href="/Harshit_Rajput_NET_Developer_Resume.pdf"
+              href={resumeUrl}
               className="btn btn-secondary"
               download="Harshit_Rajput_NET_Developer_Resume.pdf"
               target="_blank"
@@ -292,7 +312,7 @@ const Hero: React.FC = () => {
                 animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
               >
-                DOWNLOAD CV
+                DOWNLOAD RESUME
               </motion.span>
               <motion.span 
                 style={{ fontSize: '1.2rem' }}
@@ -361,10 +381,11 @@ const Hero: React.FC = () => {
                 }}
               >
                 <motion.span
+                  style={{ display: 'inline-flex' }}
                   animate={{ rotate: [0, 10, -10, 0] }}
                   transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
                 >
-                  {link.icon}
+                  <SocialIcon name={link.name} size={24} />
                 </motion.span>
               </motion.a>
             ))}
@@ -422,7 +443,7 @@ const Hero: React.FC = () => {
               marginLeft: '1rem',
               fontFamily: 'monospace'
             }}>
-              coder.js
+              developer.cs
             </div>
           </div>
 
@@ -452,19 +473,17 @@ const Hero: React.FC = () => {
               }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-{`const coder = {
-  name: 'Harshit Rajput',
-  skills: ['React', 'Angular', 'C#', 'ASP.NET Core', 'Entity Framework', 'SQL Server', 'Ocelot API Gateway'],
-  hardWorker: true,
-  quickLearner: true,
-  problemSolver: true,
-  hireable: function() {
-    return (
-      this.hardWorker &&
-      this.problemSolver &&
-      this.skills.length >= 5
-    );
-  }
+{`var developer = new FullStackDev
+{
+    Name = "Harshit Rajput",
+    Role = ".NET Core Full Stack Developer",
+    Stack = new[] { "C#", ".NET Core", "Web API",
+                    "Angular", "SQL Server" },
+    Focus = new[] { "Healthcare", "Fintech" },
+    Experience = 4.5,
+    Hireable = () =>
+        developer.Experience > 4 &&
+        developer.Stack.Length >= 5
 };`}
             </motion.pre>
           </motion.div>

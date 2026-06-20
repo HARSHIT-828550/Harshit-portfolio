@@ -3,7 +3,9 @@ export interface Experience {
   title: string;
   company: string;
   period: string;
+  location?: string;
   description: string;
+  highlights?: string[];
   technologies: string[];
 }
 
@@ -11,7 +13,12 @@ export interface Project {
   id: string;
   title: string;
   description: string;
-  image: string;
+  /** Optional cover image. When omitted, the card renders a gradient header. */
+  image?: string;
+  /** Emoji/glyph shown in the gradient header when there is no cover image. */
+  icon?: string;
+  /** Two-stop CSS gradient used for the card header. */
+  accent?: [string, string];
   technologies: string[];
   role: string;
   achievements?: string[];
@@ -51,6 +58,7 @@ export interface HeroData {
   greeting: string;
   name: string;
   title: string;
+  tagline: string;
   description: string;
   socialLinks: {
     name: string;

@@ -45,8 +45,27 @@ const Experience: React.FC = () => {
                   <h3>{experience.title}</h3>
                   <span className="timeline-period">{experience.period}</span>
                 </div>
-                <h4>{experience.company}</h4>
+                <h4>
+                  {experience.company}
+                  {experience.location && (
+                    <span className="timeline-location"> · {experience.location}</span>
+                  )}
+                </h4>
                 <p>{experience.description}</p>
+                {experience.highlights && experience.highlights.length > 0 && (
+                  <ul className="timeline-highlights">
+                    {experience.highlights.map((point, pointIndex) => (
+                      <motion.li
+                        key={pointIndex}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={inView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.3, delay: 0.3 + pointIndex * 0.1 }}
+                      >
+                        {point}
+                      </motion.li>
+                    ))}
+                  </ul>
+                )}
                 <div className="timeline-tags">
                   {experience.technologies.map((tech, techIndex) => (
                     <motion.span

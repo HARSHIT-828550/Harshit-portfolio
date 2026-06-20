@@ -48,40 +48,68 @@ const Projects: React.FC = () => {
                 transformStyle: 'preserve-3d'
               }}
             >
-              <div className="project-image">
-                <motion.img
-                  src={project.image}
-                  alt={project.title}
-                  loading="lazy"
-                  decoding="async"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <motion.div
-                  className="project-overlay"
-                  whileHover={{ opacity: 1 }}
-                  initial={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="project-links">
-                    <motion.a
-                      href={project.liveUrl}
-                      className="project-link"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      🔗 Live Demo
-                    </motion.a>
-                    <motion.a
-                      href={project.codeUrl}
-                      className="project-link"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      📁 Code
-                    </motion.a>
-                  </div>
-                </motion.div>
+              <div
+                className="project-image"
+                style={
+                  project.accent
+                    ? { background: `linear-gradient(135deg, ${project.accent[0]} 0%, ${project.accent[1]} 100%)` }
+                    : undefined
+                }
+              >
+                {project.image ? (
+                  <motion.img
+                    src={project.image}
+                    alt={project.title}
+                    loading="lazy"
+                    decoding="async"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                ) : (
+                  <motion.span
+                    className="project-glyph"
+                    aria-hidden="true"
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: index * 0.2 }}
+                  >
+                    {project.icon ?? '🛠️'}
+                  </motion.span>
+                )}
+                {(project.liveUrl || project.codeUrl) && (
+                  <motion.div
+                    className="project-overlay"
+                    whileHover={{ opacity: 1 }}
+                    initial={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="project-links">
+                      {project.liveUrl && (
+                        <motion.a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="project-link"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          🔗 Live Demo
+                        </motion.a>
+                      )}
+                      {project.codeUrl && (
+                        <motion.a
+                          href={project.codeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="project-link"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          📁 Code
+                        </motion.a>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
               </div>
               <div className="project-content">
                 <h3>{project.title}</h3>

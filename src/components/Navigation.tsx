@@ -1,10 +1,32 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 
+type Theme = 'dark' | 'light';
+
+const getInitialTheme = (): Theme => {
+  if (typeof document !== 'undefined') {
+    const current = document.documentElement.getAttribute('data-theme');
+    if (current === 'light' || current === 'dark') return current;
+  }
+  return 'dark';
+};
+
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    try {
+      localStorage.setItem('theme', theme);
+    } catch {
+      /* ignore storage errors (e.g. privacy mode) */
+    }
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
 
   const navItems = useMemo(() => [
     { id: 'home', label: 'Home' },
@@ -56,14 +78,10 @@ const Navigation: React.FC = () => {
 
   return (
     <motion.nav
-      className="navbar"
+      className={`navbar ${isScrolled ? 'scrolled' : ''}`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      style={{
-        background: isScrolled ? 'rgba(13, 18, 36, 0.98)' : 'rgba(13, 18, 36, 0.95)',
-        backdropFilter: 'blur(20px)'
-      }}
     >
       <div className="nav-container">
         <motion.div
@@ -138,15 +156,29 @@ const Navigation: React.FC = () => {
           ))}
         </div>
 
-        <motion.div
-          className={`mobile-menu-toggle ${isMobileMenuOpen ? 'active' : ''}`}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          whileTap={{ scale: 0.95 }}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </motion.div>
+        <div className="nav-right">
+          <motion.button
+            type="button"
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            whileHover={{ scale: 1.1, rotate: 15 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </motion.button>
+
+          <motion.div
+            className={`mobile-menu-toggle ${isMobileMenuOpen ? 'active' : ''}`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </motion.div>
+        </div>
       </div>
     </motion.nav>
   );

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useForm } from 'react-hook-form';
 import { contactInfo } from '../data/portfolioData';
+import SocialIcon from './SocialIcon';
 import type { FormData } from '../types';
 
 const Contact: React.FC = () => {
@@ -110,7 +111,9 @@ const Contact: React.FC = () => {
                   whileHover={{ y: -2, scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="social-icon">{link.icon}</span>
+                  <span className="social-icon">
+                    <SocialIcon name={link.name} size={22} />
+                  </span>
                   <span>{link.name}</span>
                 </motion.a>
               ))}
@@ -123,7 +126,7 @@ const Contact: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.8 }}
             >
               <motion.a
-                href="/Harshit_Rajput_NET_Developer_Resume.pdf"
+                href={`${import.meta.env.BASE_URL}Harshit_Rajput_NET_Developer_Resume.pdf`}
                 download="Harshit_Rajput_NET_Developer_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -131,7 +134,7 @@ const Contact: React.FC = () => {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span>Download CV</span>
+                <span>Download Resume</span>
                 <span>📄</span>
               </motion.a>
             </motion.div>

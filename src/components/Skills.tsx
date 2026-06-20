@@ -39,7 +39,7 @@ const Skills: React.FC = () => {
                 <motion.h3
                   style={{
                     fontSize: '1.2rem',
-                    color: '#00f2fe',
+                    color: 'var(--heading-accent)',
                     marginBottom: '1rem',
                     textAlign: 'center',
                     position: 'relative'

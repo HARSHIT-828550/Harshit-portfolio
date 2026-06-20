@@ -4,18 +4,65 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/Harshit-portfolio/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Harshit Rajput - .NET Developer Portfolio</title>
-    
+    <meta name="theme-color" content="#0d1224" />
+
+    <title>Harshit Rajput — .NET Core Full Stack Developer</title>
+    <meta
+      name="description"
+      content="Harshit Rajput — .NET Core Full Stack Developer with 4.5+ years building scalable web applications, REST APIs, and microservices for Healthcare & Fintech."
+    />
+    <meta name="author" content="Harshit Rajput" />
+    <meta
+      name="keywords"
+      content="Harshit Rajput, .NET Core Developer, Full Stack Developer, C#, ASP.NET, Web API, SQL Server, Microservices, REST API"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Harshit Rajput — .NET Core Full Stack Developer" />
+    <meta
+      property="og:description"
+      content="Building scalable web applications & REST APIs for Healthcare & Fintech."
+    />
+    <meta property="og:image" content="/Harshit-portfolio/profile-image.jpg" />
+    <meta property="og:url" content="https://HARSHIT-828550.github.io/Harshit-portfolio/" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Harshit Rajput — .NET Core Full Stack Developer" />
+    <meta
+      name="twitter:description"
+      content="Building scalable web applications & REST APIs for Healthcare & Fintech."
+    />
+    <meta name="twitter:image" content="/Harshit-portfolio/profile-image.jpg" />
+
     <!-- Preload critical resources -->
-    <link rel="preload" href="/Harshit-portfolio/profile-image.jpg" as="image" type="image/jpeg">
-    
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+    <link rel="preload" href="/Harshit-portfolio/profile-image.jpg" as="image" type="image/jpeg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- DNS prefetch for performance -->
-    <link rel="dns-prefetch" href="https://github.com">
-    <link rel="dns-prefetch" href="https://linkedin.com">
+    <link rel="dns-prefetch" href="https://github.com" />
+    <link rel="dns-prefetch" href="https://linkedin.com" />
+
+    <!-- Apply saved theme before paint to avoid a flash of the wrong theme -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var theme = saved === 'light' || saved === 'dark' ? saved : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <p>© Developer Portfolio by <span className="highlight">Harshit Rajput</span></p>
+          <p>© {new Date().getFullYear()} <span className="highlight">Harshit Rajput</span> · Gurgaon, Haryana</p>
           <div className="footer-links">
             {['home', 'about', 'projects', 'contact'].map((link) => (
               <motion.a
